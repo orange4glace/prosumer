@@ -18,10 +18,8 @@ type Prosumer struct {
 	consumerCloser chan bool
 }
 
-/*
- * NewProsumer create and returns new Prosumer object
- * You can access Producer and Consumer via public member
- */
+// NewProsumer create and returns new Prosumer object
+// You can access Producer and Consumer via public member
 func NewProsumer() (ps *Prosumer) {
 	ps = new(Prosumer)
 	ps.Producer.ps = ps
@@ -60,12 +58,10 @@ func (ps *Prosumer) close() {
 	ps.m.Unlock()
 }
 
-/*
- * Close Prosumer
- * If immediate is true, Prosumer will be closed immedately.
- * Otherwise it will wait until Consumer consumes all remain works
- * Producer will be closed immediately in either case.
- */
+// Close Prosumer
+// If immediate is true, Prosumer will be closed immedately.
+// Otherwise it will wait until Consumer consumes all remain works
+// Producer will be closed immediately in either case.
 func (ps *Prosumer) Close(immediate bool) {
 	ps.m.Lock()
 	ps.closing = true
@@ -80,10 +76,8 @@ func (ps *Prosumer) Close(immediate bool) {
 	}
 }
 
-/*
- * NotifyClose returns read only channel
- * The channel gets true value right after Prosumer closed.
- */
+// NotifyClose returns read-only channel
+// The channel gets true value right after Prosumer closed.
 func (ps *Prosumer) NotifyClose() <-chan bool {
 	ps.m.Lock()
 	ch := make(chan bool)

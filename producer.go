@@ -11,11 +11,9 @@ func newProducer(prosumer *Prosumer) (p *Producer) {
 	return p
 }
 
-/*
- * Produce an data of any type (interface{})
- * Returns true when success
- * Returns false when failed (Prosumer is closed)
- */
+// Produce an data of any type (interface{})
+// Returns true when success
+// Returns false when failed (Prosumer is closed)
 func (p *Producer) Produce(data interface{}) bool {
 	p.ps.m.Lock()
 	defer p.ps.m.Unlock()

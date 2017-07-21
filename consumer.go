@@ -6,9 +6,7 @@ type Consumer struct {
 	ch chan interface{}
 }
 
-/*
- * Consume returns a read only consumer channel
- */
+// Consume returns a read-only consumer channel
 func (c *Consumer) Consume() <-chan interface{} {
 	c.ch = make(chan interface{})
 	go func() {
