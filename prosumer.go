@@ -29,6 +29,8 @@ func NewProsumer() (ps *Prosumer) {
 	ps.consumerCloser = make(chan bool)
 	ps.c = sync.NewCond(&ps.m)
 	ps.q = make([]interface{}, 0)
+
+	ps.Consumer.init()
 	return ps
 }
 
